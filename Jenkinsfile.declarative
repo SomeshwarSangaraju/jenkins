@@ -1,5 +1,9 @@
 pipeline{
-    agent any
+    agent{
+        node{
+            label 'nodejs'
+        }
+    }
     stages{
         stage('Build'){
             steps{
@@ -15,6 +19,18 @@ pipeline{
             steps{
                  echo "Deploying"
             }
+        }
+    }
+    post{
+        always{
+            echo "i will always say hello again"
+            cleanWs()
+        }
+        success{
+            echo "This is a sucess mail"
+        }
+        fail{
+            echo "build failed"
         }
     }
 }
