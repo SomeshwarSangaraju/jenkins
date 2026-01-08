@@ -28,7 +28,7 @@ pipeline{
                         echo $COURSE
                         sleep 10
                         env
-                        
+
                         echo "Hello ${params.PERSON}"
                         echo "Biography: ${params.BIOGRAPHY}"
                         echo "Toggle: ${params.TOGGLE}"
@@ -52,7 +52,7 @@ pipeline{
         }
         stage('Deploy'){
             when{
-                expression ("$params.Deploy" = "true")
+                expression ("$params.Deploy" == "true")
             }
             steps{
                 script{
