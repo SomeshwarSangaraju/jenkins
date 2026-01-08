@@ -17,7 +17,7 @@ pipeline{
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
     stages{
-        stage('Deploy'){
+        stage('Build'){
             // input {
             //     message "Should we continue?"
             //     ok "Yes, we should."
@@ -26,18 +26,19 @@ pipeline{
             //         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
             //     }
             steps{
-                // script{
-                //     sh """
-                //         echo "deploying"
-                //     """
+                script{
+                    sh """
+                        // echo "deploying"
+                        echo "Hello ${params.PERSON}"
+                        echo "Biography: ${params.BIOGRAPHY}"
+                        echo "Toggle: ${params.TOGGLE}"
+                        echo "Choice: ${params.CHOICE}"
+                        echo "Password: ${params.PASSWORD}"
+                    """
                 //  echo "Hello, ${PERSON}, nice to meet you."
-                // }
+                }
             
-                echo "Hello ${params.PERSON}"
-                echo "Biography: ${params.BIOGRAPHY}"
-                echo "Toggle: ${params.TOGGLE}"
-                echo "Choice: ${params.CHOICE}"
-                echo "Password: ${params.PASSWORD}"
+                
             }
         }
         stage('Test'){
@@ -49,7 +50,7 @@ pipeline{
                 }
             }
         }
-        stage('Build'){
+        stage('Deploy'){
             steps{
                 script{
                     sh """
