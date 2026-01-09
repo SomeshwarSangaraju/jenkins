@@ -42,7 +42,7 @@ pipeline{
             }
         }
         stage('Test'){
-                input {
+            input {
                 message "Should we continue?"
                 ok "Yes, we should."
                 submitter "alice,bob"
